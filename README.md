@@ -2,7 +2,7 @@
 # DemoAngular4
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
-
+Angular4 app which enables users to search ITunes as well as user can listen in web.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
