@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h1>Signup</h1><br />
+                       <form #myform="ngForm" (ngSubmit)="myform.form.valid && register(myform)" novalidate>
+                           <fieldset >
+                               <div class="form-group" [ngClass]="{
+                                 'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+                                 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+                                   <label>First Name</label>
+                                   <input type="text" class="form-control" minlength="2" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+                                   <div class="alert alert-danger" *ngIf="firstName.invalid && myform.submitted">
+                                       First Name is invalid
+                                   </div>
+                               </div>
+                               <div class="form-group" [ngClass]="{
+                                 'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
+                                 'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
+                                   <label>Last Name</label>
+                                   <input type="text" required class="form-control" minlength="2" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel">
+                                   <div class="alert alert-danger" *ngIf="lastName.invalid && myform.submitted">
+                                       Last Name is invalid
+                                   </div>
+                               </div>
+                           </fieldset>
+
+                           <div class="form-group" [ngClass]="{
+                             'has-danger': email.invalid && (email.dirty || email.touched),
+                             'has-success': email.valid && (email.dirty || email.touched)}">
+                               <label>Email</label>
+                               <input type="email" required class="form-control" minlength="4" name="email"  [(ngModel)]="model.email" #email="ngModel">
+                               <div class="alert alert-danger" *ngIf="email.errors && myform.submitted">                                  
+                                       <div *ngIf="email.errors.required && myform.submitted">Email is required</div>
+                                       <!--<div *ngIf="email.errors.pattern">Email wrong format</div>-->
+                                       <!--<p *ngIf="email.errors.emailvalidator">Please provide a valid email address</p>-->                                  
+                               </div>
+                           </div>
+                           <!--Radio and checkboxes work much the same way -->
+                           <div class="pull-left form-group">
+                               <label class="custom-control custom-radio">
+                                   <input type="radio" name="gender" value="Male" [(ngModel)]="model.gender" required class="custom-control-input">
+                                   <span class="custom-control-indicator"></span>
+                                   <span class="custom-control-description">Male</span>
+                               </label>
+                               <label class="custom-control custom-radio">
+                                   <input type="radio" name="gender" value="Female" [(ngModel)]="model.gender" required class="custom-control-input">
+                                   <span class="custom-control-indicator"></span>
+                                   <span class="custom-control-description">Female</span>
+                               </label>
+                           </div>
+                           <div class="row"></div>
+                           <label class="custom-control custom-checkbox">
+                               <input type="checkbox" class="custom-control-input" name="veg" value="Vegetarian" [(ngModel)]="model.veg">
+                               <span class="custom-control-indicator"></span>
+                               <span class="custom-control-description">Vegetarian</span>
+                           </label>
+                           <label class="custom-control custom-checkbox">
+                               <input type="checkbox" class="custom-control-input" name="nonveg" value="Non-Veg" [(ngModel)]="model.nonveg">
+                               <span class="custom-control-indicator"></span>
+                               <span class="custom-control-description"> Non-Veg</span>
+                           </label>
+
+                           <div class="form-group" [ngClass]="{
+                                 'has-error': password.invalid && (password.dirty || password.touched && myform.submitted),
+                                 'has-success': password.valid && (password.dirty || password.touched)}">
+                               <label>Password</label>
+                               <input type="password" required class="form-control" minlength="4" maxlength="8" name="password" [(ngModel)]="model.password" #password="ngModel">
+                               <div class="alert alert-danger" *ngIf="password.invalid && myform.submitted">
+                                   Password is invalid
+                               </div>
+                           </div>
+                           <div class="form-group" [ngClass]="{
+                                 'has-error': cpassword.invalid && myform.submitted,
+                                 'has-success': cpassword.valid && (cpassword.dirty || cpassword.touched)}">
+                               <label>Confirm Password</label>
+                               <input type="password" required class="form-control" minlength="4" maxlength="8" name="cpassword" [(ngModel)]="model.cpassword" #cpassword="ngModel">
+                               <div class="alert alert-danger" *ngIf="cpassword.invalid && myform.submitted">
+                                   Confirm Password is invalid
+                               </div>
+                           </div>
+                           <div class="form-group" [ngClass]="{
+                                 'has-error': language.invalid && myform.submitted,
+                                 'has-success': language.valid && (language.dirty || language.touched)}">
+                               <label>Language</label>
+                               <select class="form-control" name="language" [(ngModel)]="model.language" #language="ngModel" required>
+                                   <option value="" selected="selected">Please select a language</option>
+                                   <option *ngFor="let lang of langs" [value]="lang">{{lang}}</option>
+                               </select>
+                               <div class="alert alert-danger" *ngIf="language.invalid && myform.submitted">
+                                   Language is required
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <button type="submit" class="btn btn-primary" [disabled]="loading">Submit</button>
+                               <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                           </div>
+
+                       </form>
+
+
+    </div>
+    <div class="col-sm-4">
+        <pre>{{myform.value | json}}</pre>
+        <pre>Valid? {{myform.valid}}</pre>
+        <pre>Dirty? {{myform.dirty}}</pre>
+        <pre>Touched? {{myform.touched}}</pre>
+    </div>
+    </div>

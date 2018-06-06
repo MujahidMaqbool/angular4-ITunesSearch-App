@@ -1,0 +1,34 @@
+<h1> ITunes</h1>
+<form>
+
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input type="search"
+                   class="form-control"
+                   placeholder="Enter search string" name="search"
+                   #search required />
+        </div>
+    </div>
+    <button class="btn btn-primary"
+            (click)="doSearch(search.value)">
+        Search
+    </button>
+</form>
+<br />
+<hr />
+<div class="text-center">
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+</div>
+<div class="row">
+<div class="col-sm-12">
+    <div class="col-sm-6 float-left mb-1 p-1" *ngFor="let tunes of track.result">
+        <div class="border border-info w-100 m-b-1 p-3">
+        <img class="img-thumbnail" src="{{tunes.artworkUrl60}}" alt="Image" />
+        <a target="_blank" href="{{trackViewUrl}}">{{tunes.trackName}}</a>
+        <p style="color:#cf6666">Collection Name: {{tunes.collectionName}}</p>
+        <!-- <p> <a target="_blank" href="{{tunes.previewUrl}}">Listen Now</a></p> -->
+        <p><audio class="w-100" controls src="{{tunes.previewUrl}}"></audio></p>
+        </div>
+    </div>
+</div>
+</div>

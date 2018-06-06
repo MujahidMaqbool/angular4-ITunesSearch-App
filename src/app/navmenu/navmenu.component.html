@@ -1,0 +1,36 @@
+<div class='main-nav bg-dark navbar-dark'>
+         
+        <div class='clearfix'></div>
+      
+            <ul class='nav navbar padd-x-0'>
+                <li [routerLinkActive]="['link-active']">
+                    <a class="nav-link" [routerLink]="['/home']">
+                        <span class='fa fa-home'></span> Home
+                    </a>
+                </li>             
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/signup']">
+                        <span class='fa fa-user'></span> Sign Up
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/login']">
+                        <span class='fa fa-sign-in'></span> LogIn
+                    </a>
+                </li>
+                
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/searchmusic']">
+                        <span class='fa fa-music'></span> Search Itune
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/searchVideos']">
+                        <span class='fa fa-video-camera'></span> Search Videos
+                    </a>
+                </li>
+               
+            </ul>
+       
+    
+</div>
